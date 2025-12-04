@@ -51,7 +51,7 @@ jobs:
     runs-on: ubuntu-latest
     environment: staging
     steps:
-      - name: Print Prod Variables
+      - name: Print Staging Variables
         run: |
           echo "Org overwritten var: ${{vars.OVERWRITTEN_VAR}}"
           echo "Repo var: ${{vars.REPOSITORY_VAR}}"
