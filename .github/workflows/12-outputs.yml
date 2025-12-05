@@ -20,9 +20,6 @@ jobs:
         run: echo "$GITHUB_OUTPUT"
       - name: Build
         id: build
-        outputs:
-          output1: ${{steps.build.outputs.value1}}
-          output2: ${{steps.build.outputs.value2}}
         run: |
           echo "$GITHUB_OUTPUT"
           echo "status=${{inputs.build_status}}" >> "$GITHUB_OUTPUT"
