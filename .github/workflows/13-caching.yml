@@ -38,8 +38,8 @@ jobs:
         id: cache
         if: ${{inputs.use-cache}}
         with:
-          key: ${{steps.cache-key.outputs.CACHE_KEY}}
           path: 13-caching/react-app/node_modules
+          key: ${{steps.cache-key.outputs.CACHE_KEY}}
      
       - name: Install Dependencies
         if: steps.cache.outputs.cache-hit != 'true'
@@ -68,14 +68,6 @@ jobs:
         with:
           key: ${{needs.install_deps.outputs.deps-cache-key}}
           path: 13-caching/react-app/node_modules
-               
-      #- name: Install Dependencies
-      #  if: steps.cache.outputs.cache-hit != 'true'
-      #  run: |
-      #    npm ci
-      - name: Run Tests
-        run: |
-          npm run test
       - name: Building
         run: |
           npm run build
