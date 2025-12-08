@@ -11,12 +11,12 @@ jobs:
         node-version: [18.x, 20.x, 21.x]
         os: [ubuntu-latest, windows-latest]
         
-        include:
-          - os: ubuntu_latest
-            node-version: 16.x
-          - os: ubuntu_latest
-            node-version: 21.x
-            tag: experimental
+        #include:
+         # - os: ubuntu_latest
+          #  node-version: 16.x
+          #- os: ubuntu_latest
+          #  node-version: 21.x
+          #  tag: experimental
 
     steps:
       - name: Setup Node
@@ -35,15 +35,16 @@ jobs:
 
   include-example:
     runs-on: ubuntu-latest
-    name: ${{matrix.color}}-${{matrix.shape}}-${{matrix.size}}
+    name: ${{matrix.color}}-${{matrix.shape}}-${{matrix.size}}-${{matrix.opacity}}
     strategy:
       matrix:
         color: [red, green]
         shape: [circle, square]
         size: [small, large]
         include:
+          - opacity: 50
           - color: red
             shape: triangle
     steps:
       - name: Dummy step
-        run: echo "${{matrix.color}}-${{matrix.shape}}-${{matrix.size}}"
+        run: echo "${{matrix.color}}-${{matrix.shape}}-${{matrix.size}}-${{matrix.opacity}}"
