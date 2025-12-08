@@ -6,7 +6,7 @@ on:
       target-env:
         type: environment
         default: staging
-run-name: 16 - Working with Environments | env - {{inputs.target-env}}
+run-name: 16 - Working with Environments | env - ${{inputs.target-env}}
 
 jobs:
   echo:
@@ -17,4 +17,4 @@ jobs:
     steps:
       - name: Echo vars
         run: |
-          echo "Env variable: $my-env-value"
+          echo "Env variable: ${{my-env-value}}"
