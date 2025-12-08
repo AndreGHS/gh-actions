@@ -4,7 +4,7 @@ on:
 
 env:
   BUILD_ARTIFACT_KEY: app-${{GITHUB.sha}}
-  TEST_COVERAGE_KEY: test-coverage-${{GITHUB.SH}}
+  TEST_COVERAGE_KEY: test-coverage-${{GITHUB.SHA}}
 
 jobs:
   test-build:
