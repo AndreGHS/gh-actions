@@ -35,7 +35,7 @@ jobs:
 
   include-example:
     runs-on: ubuntu-latest
-    name: ${matrix.color}-${matrix.shape}-${matrix.size}
+    name: ${{matrix.color}}-${{matrix.shape}}-${{matrix.size}}
     strategy:
       matrix:
         color: [red, green]
@@ -46,4 +46,4 @@ jobs:
             shape: triangle
     steps:
       - name: Dummy step
-        run: echo "${matrix.color}-${matrix.shape}-${matrix.size}"
+        run: echo "${{matrix.color}}-${{matrix.shape}}-${{matrix.size}}"
