@@ -3,6 +3,7 @@ import time
 
 def ping_url(url, delay, max_trials):
     for attemp in range(max_trials):
+        print(f"Attempt {attemp + 1} of {max_trials} to reach {url}")
         response = requests.get(url)
         if response.status_code==200:
             print(f"URL reachable: {url}")
