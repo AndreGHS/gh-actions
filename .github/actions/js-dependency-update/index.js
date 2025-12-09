@@ -1,5 +1,6 @@
 const core = require('@actions/core');
 const exec = require('@actions/exec');
+const github = require('@actions/github');
 
 const validateBranchName = ({ branchName }) =>
   /^[a-zA-Z0-9_\-\.\/]+$/.test(branchName);
@@ -14,6 +15,9 @@ async function run() {
   const debug = core.getBooleanInput('debug');
 
   core.setSecret(ghToken);
+  const commonExecOpts = {
+    cwd: workingDir,
+  };
 
   if (!validateBranchName({ branchName: baseBranch })) {
     core.setFailed(
@@ -54,6 +58,38 @@ async function run() {
 
   if (gitStatus.stdout.length > 0) {
     core.info('[js-dependency-update] : There are updates available!');
+    await exec.exec(`git config --global user.name "gh-automation"`);
+    await exec.exec(`git config --global user.email "gh-automation@email.com"`);
+    await exec.exec(`git checkout -b ${targetBranch}`, [], {
+      ...commonExecOpts,    });
+
+    await exec.exec(`git add package.json package-lock.json`, [], {
+      ...commonExecOpts,
+    });
+    await exec.exec(`git commit -m "chore: update dependencies`, [], {
+      ...commonExecOpts,
+    });
+    await exec.exec(`git push -u origin ${targetBranch} --force`, [], {
+      ...commonExecOpts,
+    });
+
+    const octokit = github.getOctokit(ghToken);    
+
+    try {
+      await octokit.rest.pulls.create({
+        owner: github.context.repo.owner,
+        repo: github.context.repo.repo,
+        title: `Update NPM dependencies`,
+        body: `This pull request updates NPM packages`,
+        base: baseBranch,
+        head: targetBranch 
+      });
+    } catch (e) {
+      core.error('[js-dependency-update] : Something went wrong while creating the PR. Check logs below.');
+      core.setFailed(e.message);
+      core.error(e);
+    }
+    
   } else {
     core.info('[js-dependency-update] : No updates at this point in time.');
   }
