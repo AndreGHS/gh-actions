@@ -17,6 +17,10 @@ on:
         
 run-name: 17 - 2 - Custom Actions - JS | base - ${{inputs.base-branch}} target - ${{inputs.target-branch}} work dir - ${{inputs.working-dir}}
 
+permissions:
+  contents: write
+  pull-requests: write
+
 jobs:
   dependency-update:
     runs-on: ubuntu-latest
