@@ -13,7 +13,9 @@ env:
 jobs:
   build:
     runs-on: ubuntu-latest
-    working-directory: ${{ env.working-dir }}
+    defaults:
+      run:
+        working-directory: ${{ env.working-dir }}
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
