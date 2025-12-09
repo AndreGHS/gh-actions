@@ -9,7 +9,7 @@ def ping_url(url, delay, max_trials):
                 print(f"URL reachable: {url}")
                 return True
             else:
-                 print(f"URL not reachable, retrying in {delay} seconds...")
+                print(f"URL not reachable, retrying in {delay} seconds...")
                 time.sleep(delay)
 
        # except requests.ConnectionError:
