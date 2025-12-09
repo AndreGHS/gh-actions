@@ -29,5 +29,5 @@ jobs:
           target-branch: ${{ inputs.target-branch }}
           working-dir: ${{ inputs.working-dir }}
           debug: ${{ inputs.debug }}
-          gh-token: ${{GITHUB_TOKEN}}
+          gh-token: ${{secrets.GITHUB_TOKEN}}
       
