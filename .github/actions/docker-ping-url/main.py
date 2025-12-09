@@ -3,14 +3,13 @@ import time
 
 def ping_url(url, delay, max_trials):
     for attemp in range(max_trials):
-        try:
-            response = requests.get(url)
-            if response.status_code==200:
-                print(f"URL reachable: {url}")
-                return True
-            else:
-                print(f"URL not reachable, retrying in {delay} seconds...")
-                time.sleep(delay)
+        response = requests.get(url)
+        if response.status_code==200:
+            print(f"URL reachable: {url}")
+            return True
+        else:
+            print(f"URL not reachable, retrying in {delay} seconds...")
+            time.sleep(delay)
 
        # except requests.ConnectionError:
         #    print(f"URL not reachable, retrying in {delay} seconds...")
