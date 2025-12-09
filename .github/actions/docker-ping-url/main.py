@@ -8,12 +8,16 @@ def ping_url(url, delay, max_trials):
             if response.status_code==200:
                 print(f"URL reachable: {url}")
                 return True
-        except requests.ConnectionError:
-            print(f"URL not reachable, retrying in {delay} seconds...")
-            time.sleep(delay)
-        except requests.exceptions.missing_schema:
-            print(f"Invalid URL schema: {url}")
-            return False
+            else:
+                 print(f"URL not reachable, retrying in {delay} seconds...")
+                time.sleep(delay)
+
+       # except requests.ConnectionError:
+        #    print(f"URL not reachable, retrying in {delay} seconds...")
+         #   time.sleep(delay)
+        #except requests.exceptions.missing_schema:
+        #    print(f"Invalid URL schema: {url}")
+        #    return False
     return False
 
 def run():
