@@ -29,12 +29,18 @@ def run():
 
     website_reachable = ping_url(website_url, delay, max_trials)
 
+    with open(os.getenv('GITHUB_OUTPUT'), 'a') as file:
+        print(f'{url-reachable}={website_reachable}', file=file
+
     #set_output(os.getenv('GITHUB_OUTPUT'), 'url-reachable', website_reachable)
     
     if not website_reachable:
         raise Exception(f"Website {website_url} is malformed or unreachable.")
 
     print(f"Website {website_url} is reachable.")
+
+    
+    
 
 if __name__ == "__main__":
     run()
