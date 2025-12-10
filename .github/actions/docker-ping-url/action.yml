@@ -13,7 +13,9 @@ inputs:
     description: Delay between trials in seconds
     required: false
     default: 5
-
+outputs:
+  url-reachable:
+    descriptions: Whether the URL is reachable
 runs:
   using: docker
   image: Dockerfile
