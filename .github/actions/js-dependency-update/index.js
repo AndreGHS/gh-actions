@@ -56,7 +56,10 @@ async function run() {
     }
   );
 
+  let updatesAvailable = false;
+  
   if (gitStatus.stdout.length > 0) {
+    updatesAvailable = true;
     core.info('[js-dependency-update] : There are updates available!');
     await exec.exec(`git config --global user.name "gh-automation"`);
     await exec.exec(`git config --global user.email "gh-automation@email.com"`);
@@ -107,6 +110,8 @@ async function run() {
   5. Otherwise, conclude the custom action
    */
   core.info('I am a custom JS action');
+  logger.debug(`Setting updates-available output to ${updatesAvailable}`);
+  core.setOutput('updates-available', updatesAvailable);
 }
 
 run();
