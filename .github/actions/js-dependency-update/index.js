@@ -110,7 +110,7 @@ async function run() {
   5. Otherwise, conclude the custom action
    */
   core.info('I am a custom JS action');
-  logger.debug(`Setting updates-available output to ${updatesAvailable}`);
+  
   core.setOutput('updates-available', updatesAvailable);
 }
 
