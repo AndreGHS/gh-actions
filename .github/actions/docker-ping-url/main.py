@@ -30,7 +30,7 @@ def run():
     website_reachable = ping_url(website_url, delay, max_trials)
 
     with open(os.getenv('GITHUB_OUTPUT'), 'a') as file:
-        print(f'{url-reachable}={website_reachable}', file=file)
+        print(f'{'url-reachable'}={website_reachable}', file=file)
 
     #set_output(os.getenv('GITHUB_OUTPUT'), 'url-reachable', website_reachable)
     
